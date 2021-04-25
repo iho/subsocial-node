@@ -55,6 +55,8 @@ sp-inherents = '2.0.1'
 sp-runtime = '2.0.1'
 sp-transaction-pool = '2.0.1'
 substrate-frame-rpc-system = '2.0.1'
+pallet-contracts  = '2.0.1'
+pallet-contracts-rpc  = '0.8.1'
 
 [features]
 default = []

@@ -11,6 +11,7 @@ use sp_runtime::traits::{Verify, IdentifyAccount};
 use sc_service::{ChainType, Properties};
 use sc_telemetry::TelemetryEndpoints;
 use hex_literal::hex;
+use subsocial_runtime::ContractsConfig;
 
 // The URL for the telemetry server.
 const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -202,7 +203,7 @@ fn testnet_genesis(
 	root_key: AccountId,
 	endowed_accounts: Vec<(AccountId, u128)>,
 	treasury_account_id: AccountId,
-	_enable_println: bool
+	enable_println: bool
 ) -> GenesisConfig {
 	GenesisConfig {
         frame_system: Some(SystemConfig {
@@ -227,6 +228,12 @@ fn testnet_genesis(
 		pallet_spaces: Some(SpacesConfig {
 			endowed_account: root_key,
 		}),
+        pallet_contracts: Some(ContractsConfig {
+            current_schedule: pallet_contracts::Schedule {
+                enable_println,
+                ..Default::default()
+            },
+        }),
 	}
 }
 
